@@ -3,7 +3,6 @@
 import sys
 import sympy
 
-
 def factor(num):
     factors = sympy.factorint(num)
     if len(factors) != 3:
@@ -24,6 +23,8 @@ def factor(num):
         num1 = num2
         num2 = temp
     print(f"{num}={num1}*{num2}")
+
+
 
 
 if len(sys.argv) != 2:

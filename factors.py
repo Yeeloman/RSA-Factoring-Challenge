@@ -17,12 +17,21 @@ def factorize(number):
     return factor_pairs
 
 
-with open(sys.argv[1], "r") as file:
-    while True:
-        line = file.readline()
-        if not line:
-            break
-        line = int(line)
-        result = factorize(line)
-        for fact1, fact2 in result:
-            print("{}={}*{}".format(line, fact2, fact1))
+if len(sys.argv) != 2:
+    print("Usage: factors <file>")
+    exit(1)
+try:
+    with open(sys.argv[1], "r") as file:
+        while True:
+            line = file.readline()
+            if not line:
+                break
+            line = int(line)
+            result = factorize(line)
+            for fact1, fact2 in result:
+                print("{}={}*{}".format(line, fact2, fact1))
+except FileNotFoundError:
+    print("Error: File not found.")
+    sys.exit(1)
+except Exception as e:
+    print("An error occurred:", e)
