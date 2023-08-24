@@ -16,6 +16,7 @@ def factorize(number):
 
     return factor_pairs
 
+
 if len(sys.argv) != 2:
     print("Usage: factors <file>")
     exit(1)
