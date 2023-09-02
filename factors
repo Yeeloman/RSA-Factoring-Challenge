@@ -2,9 +2,6 @@
 
 import sys
 
-import time
-
-
 def factorize(num):
     '''Takes a number as input.
 
@@ -42,13 +39,8 @@ if __name__ == "__main__":
     except Exception as e:
         print("An error occurred:", e)
         exit()
-    start_time = time.time()
     for line in lines:
         num = int(line.strip())
         factors = factorize(num)
         if factors:
-            print(f"{num}={factors[1]}*{factors[0]}")
-
-        if time.time() - start_time > 5:
-            print("Time limit exceeded")
-            exit()
+            print(f"{num}={factors[0]}*{factors[1]}")
