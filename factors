@@ -20,27 +20,24 @@ def factorize(num):
     return None
 
 
-if __name__ == "__main__":
-    '''Reads the input file.
 
-    '''
-    if len(sys.argv) != 2:
-        print("Usage: factors <file>")
-        exit()
+if len(sys.argv) != 2:
+    print("Usage: factors <file>")
+    exit()
 
 
-    input_file = sys.argv[1]
-    try:
-        with open(input_file, 'r') as f:
-            lines = f.readlines()
-    except FileNotFoundError:
-        print("File not found")
-        exit()
-    except Exception as e:
-        print("An error occurred:", e)
-        exit()
-    for line in lines:
-        num = int(line.strip())
-        factors = factorize(num)
-        if factors:
-            print(f"{num}={factors[0]}*{factors[1]}")
+input_file = sys.argv[1]
+try:
+    with open(input_file, 'r') as f:
+        lines = f.readlines()
+except FileNotFoundError:
+    print("File not found")
+    exit()
+except Exception as e:
+    print("An error occurred:", e)
+    exit()
+for line in lines:
+    num = int(line.strip())
+    factors = factorize(num)
+    if factors:
+        print(f"{num}={factors[0]}*{factors[1]}")
