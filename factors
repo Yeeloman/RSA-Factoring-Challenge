@@ -1,35 +1,56 @@
 #!/usr/bin/python3
 
 import sys
-import sympy
+
+import time
 
 
-def factor(num):
-    factors = sympy.factorint(num)
+def factorize(num):
+    '''Takes a number as input.
 
-    num1 = min(factors.keys())
-    num2 = num // num1
+    Args:
 
-    if num2 > num1:
-        num1, num2 = num2, num1
+        num: input integer.
 
-    print(f"{num}={num1}*{num2}")
+        Return: A tuple of two factors if the number is not a prime.
+
+                None if the number is prime.
+
+    '''
+    for i in range(2, int(num**0.5)+1):
+        if num % i == 0:
+            return [i, num//i]
+    return None
 
 
-if len(sys.argv) != 2:
-    print("Usage: factors <file>")
-    exit(1)
-try:
-    with open(sys.argv[1], "r") as file:
-        while True:
-            line = file.readline()
-            if not line:
-                break
-            line = int(line)
-            factor(line)
-except FileNotFoundError:
-    print("Error: File not found.")
-    sys.exit(1)
-except Exception as e:
-    print("An error occurred:", e)
-    sys.exit(1)
+if __name__ == "__main__":
+    '''Reads the input file.
+
+    '''
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        exit()
+
+
+    input_file = sys.argv[1]
+    try:
+        with open(input_file, 'r') as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        print("File not found")
+        exit()
+    except Exception as e:
+        print("An error occurred:", e)
+        exit()
+    start_time = time.time()
+    for line in lines:
+        num = int(line.strip())
+        factors = factorize(num)
+        if factors:
+            if factors[0] > factors[1]:
+                print(f"{num}={factors[0]}*{factors[1]}")
+            else:
+                print(f"{num}={factors[1]}*{factors[0]}")
+        if time.time() - start_time > 5:
+            print("Time limit exceeded")
+            exit()
