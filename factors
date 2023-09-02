@@ -47,7 +47,7 @@ if __name__ == "__main__":
         num = int(line.strip())
         factors = factorize(num)
         if factors:
-            print(f"{num}={factors[0]}*{factors[1]}")
+            print(f"{num}={factors[1]}*{factors[0]}")
 
         if time.time() - start_time > 5:
             print("Time limit exceeded")
